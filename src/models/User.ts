@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, models } from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // ✅ Changed from "bcrypt" to "bcryptjs"
 
 export interface IUser {
     email: string;
