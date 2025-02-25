@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-// import ImageGallery from "./components/ImageGallery";
+import ImageGallery from "@/components/ImageGallery";
 import { IProduct } from "@/models/Product";
 import { apiClient } from "@/utils/api-client";
 
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">ImageKit Shop</h1>
-      {/* <ImageGallery products={products} /> */}
+      <ImageGallery products={products} />
     </main>
   );
 }
