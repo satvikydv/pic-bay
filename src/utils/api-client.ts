@@ -27,7 +27,7 @@ class ApiClient {
       ...headers,
     };
 
-    const response = await fetch(`/api${endpoint}`, {
+    const response = await fetch(`/api/${endpoint}`, {
       method,
       headers: defaultHeaders,
       body: body ? JSON.stringify(body) : undefined,
@@ -41,7 +41,9 @@ class ApiClient {
   }
 
   async getProducts() {
-    return this.fetch<IProduct[]>("/products");
+    const res = await this.fetch<IProduct[]>("/products");
+    // console.log("res: ", res)
+    return res
   }
 
   async getProduct(id: string) {

@@ -7,13 +7,14 @@ import { NextResponse } from "next/server";
 export async function GET(){
     try {
         await connectToDatabase();
-        const product = await Product.find({}).lean();
-
-        if(!product || product.length === 0){
-            return NextResponse.json({error: "No products found"}, {status: 404});
+        
+        const products = await Product.find({}).lean();
+        // console.log("product: ", products);
+        if(!products || products.length === 0){
+            return NextResponse.json([], {status: 404});
         }
 
-        return NextResponse.json({product}, {status: 200});
+        return NextResponse.json(products, {status: 200});  //bug fix
     } catch (error) {
         console.log(error);
         return NextResponse.json({error: "Internal server error"}, {status: 500});

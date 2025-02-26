@@ -32,7 +32,7 @@ export default function AdminProductForm() {
       imageUrl: "",
       variants: [
         {
-          type: "SQUARE" as ImageVariantType,
+          type: "square" as ImageVariantType,
           price: 9.99,
           license: "personal",
         },
@@ -46,7 +46,7 @@ export default function AdminProductForm() {
   })
 
   const handleUploadSuccess = (response: IKUploadResponse) => {
-    setValue("imageUrl", response.url)
+    setValue("imageUrl", response.filePath)
     showNotification("Image uploaded successfully!", "success")
   }
 

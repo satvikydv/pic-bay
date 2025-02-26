@@ -4,13 +4,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { PackageSearch } from "lucide-react"
 
 interface ImageGalleryProps {
-  products?: { product: IProduct[] } | null
+  products?: IProduct[] | null;
 }
 
 export default function ImageGallery({ products }: ImageGalleryProps) {
   // Ensure products is always an array
   console.log(products)
-  const safeProducts = Array.isArray(products?.product) ? products.product : []
+  const safeProducts = Array.isArray(products) ? products : []
   console.log(safeProducts)
   
   // Show loading skeleton if products is undefined
