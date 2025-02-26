@@ -23,8 +23,8 @@ export async function GET() {
             })
             .sort({ createdAt: -1 })
             .lean();
-
-            return NextResponse.json({ orders }, {status: 200});
+            // console.log("orders: ", orders);
+            return NextResponse.json(orders, {status: 200});
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

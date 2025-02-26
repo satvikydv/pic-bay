@@ -62,3 +62,7 @@ export async function POST(req: NextRequest){
         return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
     }
 }
+
+export async function GET() {
+    return new Response("Webhook is working", { status: 200 });
+}
