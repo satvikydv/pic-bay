@@ -43,7 +43,7 @@ class ApiClient {
   async getProducts() {
     const res = await this.fetch<IProduct[]>("/products");
     // console.log("res: ", res)
-    return res
+    return res;
   }
 
   async getProduct(id: string) {
@@ -64,13 +64,31 @@ class ApiClient {
   async createOrder(orderData: CreateOrderData) {
     const sanitizedOrderData = {
       ...orderData,
-      productId: orderData.productId.toString(),
+      productId:
+        typeof orderData.productId === "string"
+          ? orderData.productId
+          : orderData.productId.toString(),
     };
-
-    return this.fetch<{ orderId: string; amount: number }>("/orders", {
-      method: "POST",
-      body: sanitizedOrderData,
-    });
+  
+    console.log("sanitizedOrderData: ", sanitizedOrderData);
+  
+    try {
+      const response = await this.fetch<{ orderId: string; amount: number }>(
+        "/orders",
+        {
+          method: "POST",
+          body: sanitizedOrderData,
+        }
+      );
+      console.log("Order created successfully:", response);
+      return response;
+    } catch (error) {
+      console.error("Error creating order:", error);
+      if (error instanceof Error) {
+        console.error("Error response body:", error.message);
+      }
+      throw error;
+    }
   }
 }
 

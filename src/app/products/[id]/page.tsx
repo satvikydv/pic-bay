@@ -70,6 +70,8 @@ export default function ProductPage() {
     }
 
     try {
+      console.log("variant", variant);
+      console.log("productID ", product._id);
       const { orderId, amount } = await apiClient.createOrder({
         productId: product._id,
         variant,
