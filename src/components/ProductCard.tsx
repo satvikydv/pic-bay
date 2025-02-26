@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: IProduct }) {
     product.variants[0]?.price || 0
   );
 
-  console.log("product card: ", product)
+  // console.log("product card: ", product)
 
   return (
     <div className="card bg-base-100 shadow hover:shadow-lg transition-all duration-300">

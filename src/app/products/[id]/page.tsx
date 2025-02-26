@@ -16,7 +16,7 @@ import { apiClient } from "@/utils/api-client";
 
 export default function ProductPage() {
   const params = useParams();
-  const [product, setProduct] = useState<IProduct | null>(null);
+  const [product, setProduct] = useState<IProduct | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<ImageVariant | null>(
@@ -35,10 +35,17 @@ export default function ProductPage() {
         setLoading(false);
         return;
       }
-
+      console.log("id", id);  //works
       try {
         const data = await apiClient.getProduct(id.toString());
+        if(!data){
+          setError("Product not found");
+          setLoading(false);
+        }
+        console.log("data", data);
+        console.log("data type", typeof data);
         setProduct(data);
+        console.log("product", product);  
       } catch (err) {
         console.error("Error fetching product:", err);
         setError(err instanceof Error ? err.message : "Failed to load product");
@@ -197,20 +204,20 @@ export default function ProductPage() {
                           {
                             IMAGE_VARIANTS[
                               variant.type.toUpperCase() as keyof typeof IMAGE_VARIANTS
-                            ].label
+                            ]?.label
                           }
                         </h3>
                         <p className="text-sm text-base-content/70">
                           {
                             IMAGE_VARIANTS[
                               variant.type.toUpperCase() as keyof typeof IMAGE_VARIANTS
-                            ].dimensions.width
+                            ]?.dimensions.width
                           }{" "}
                           x{" "}
                           {
                             IMAGE_VARIANTS[
                               variant.type.toUpperCase() as keyof typeof IMAGE_VARIANTS
-                            ].dimensions.height
+                            ]?.dimensions.height
                           }
                           px • {variant.license} license
                         </p>
