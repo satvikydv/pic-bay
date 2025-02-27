@@ -40,12 +40,12 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 font-bold"
             prefetch={true}
-            onClick={() => showNotification("Welcome to ImageKit Shop", "info")}
+            onClick={() => showNotification("Welcome to Pic-Bay", "info")}
           >
             <Button variant="ghost" size="icon" className="h-8 w-8">
               <Home className="h-5 w-5" />
             </Button>
-            <span className="hidden md:inline-block">ImageKit Shop</span>
+            <span className="hidden md:inline-block">Pic-Bay</span>
           </Link>
         </div>
 

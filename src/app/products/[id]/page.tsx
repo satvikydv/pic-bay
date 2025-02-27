@@ -212,13 +212,13 @@ export default function ProductPage() {
                         <p className="text-sm text-base-content/70">
                           {
                             IMAGE_VARIANTS[
-                              variant.type.toUpperCase() as keyof typeof IMAGE_VARIANTS
+                              variant.type as keyof typeof IMAGE_VARIANTS
                             ]?.dimensions.width
                           }{" "}
                           x{" "}
                           {
                             IMAGE_VARIANTS[
-                              variant.type.toUpperCase() as keyof typeof IMAGE_VARIANTS
+                              variant.type as keyof typeof IMAGE_VARIANTS
                             ]?.dimensions.height
                           }
                           px • {variant.license} license
@@ -226,8 +226,8 @@ export default function ProductPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="text-xl font-bold">
-                        ${variant.price.toFixed(2)}
+                      <span className="text-xl font-bold">                       
+                        ₹{variant.price.toFixed(2)}
                       </span>
                       <button
                         className="btn btn-primary btn-sm"

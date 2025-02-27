@@ -20,7 +20,7 @@ export interface IOrder {
     razorpayOrderId: string;
     razorpayPaymentId?: string;
     amount: number;
-    status: "pending" | "completed" | "failed";
+    status: "pending" | "paid" | "failed";
     downloadUrl?: string;
     previewUrl?: string;
     createdAt?: Date;
@@ -69,7 +69,7 @@ const orderSchema = new Schema<IOrder>({
     status: {
         type: String,
         required: true,
-        enum: ["pending", "completed", "failed"],
+        enum: ["pending", "paid", "failed"],
         default: "pending"
     },
     downloadUrl: {typr: String},

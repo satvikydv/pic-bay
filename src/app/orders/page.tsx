@@ -65,7 +65,7 @@ export default function OrdersPage() {
       <div className="space-y-6">
         {orders.map((order) => {
           const variant = order.variant.type as any
-          const variantDimensions = IMAGE_VARIANTS[variant].dimensions
+          const variantDimensions = IMAGE_VARIANTS[variant as keyof typeof IMAGE_VARIANTS].dimensions
           const product = order.productId as any
 
           return (
@@ -114,7 +114,7 @@ export default function OrdersPage() {
                             Status:{" "}
                             <Badge
                               variant={
-                                order.status === "completed"
+                                order.status === "paid"
                                   ? "success"
                                   : order.status === "failed"
                                     ? "destructive"
