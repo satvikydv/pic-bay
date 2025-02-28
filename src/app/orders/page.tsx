@@ -115,10 +115,10 @@ export default function OrdersPage() {
                             <Badge
                               variant={
                                 order.status === "paid"
-                                  ? "success"
+                                  ? "secondary"
                                   : order.status === "failed"
                                     ? "destructive"
-                                    : "warning"
+                                    : "outline"
                               }
                             >
                               {order.status}
