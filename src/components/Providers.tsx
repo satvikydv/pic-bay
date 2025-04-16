@@ -2,7 +2,7 @@
 
 import { SessionProvider } from "next-auth/react";
 import React from "react";
-import { ImageKitProvider, IKImage } from "imagekitio-next";
+import { ImageKitProvider } from "imagekitio-next";
 import { NotificationProvider } from "./Notification";
 
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;

@@ -9,36 +9,37 @@ export interface CreateOrderData {
   variant: ImageVariant;
 }
 
-type FetchOptions = {
+type FetchOptions<T = unknown> = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
-  body?: any;
+  body?: T;
   headers?: Record<string, string>;
 };
 
 class ApiClient {
-  private async fetch<T>(
+  private async fetch<TResponse, TBody = unknown>(
     endpoint: string,
-    options: FetchOptions = {}
-  ): Promise<T> {
+    options: FetchOptions<TBody> = {}
+  ): Promise<TResponse> {
     const { method = "GET", body, headers = {} } = options;
-
+  
     const defaultHeaders = {
       "Content-Type": "application/json",
       ...headers,
     };
-
+  
     const response = await fetch(`/api/${endpoint}`, {
       method,
       headers: defaultHeaders,
       body: body ? JSON.stringify(body) : undefined,
     });
-
+  
     if (!response.ok) {
       throw new Error(await response.text());
     }
-
+  
     return response.json();
   }
+  
 
   async getProducts() {
     const res = await this.fetch<IProduct[]>("/products");

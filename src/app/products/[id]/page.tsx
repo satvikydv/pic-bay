@@ -14,6 +14,13 @@ import { useNotification } from "@/components/Notification";
 import { useSession } from "next-auth/react";
 import { apiClient } from "@/utils/api-client";
 
+declare global {
+  interface Window {
+    Razorpay: any; // Or the specific type if you have it
+  }
+}
+
+
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<IProduct | undefined>(undefined);
@@ -35,17 +42,17 @@ export default function ProductPage() {
         setLoading(false);
         return;
       }
-      console.log("id", id);  //works
+      // console.log("id", id);  //works
       try {
         const data = await apiClient.getProduct(id.toString());
         if(!data){
           setError("Product not found");
           setLoading(false);
         }
-        console.log("data", data);
-        console.log("data type", typeof data);
+        // console.log("data", data);
+        // console.log("data type", typeof data);
         setProduct(data);
-        console.log("product", product);  
+        // console.log("product", product);  
       } catch (err) {
         console.error("Error fetching product:", err);
         setError(err instanceof Error ? err.message : "Failed to load product");
@@ -98,7 +105,7 @@ export default function ProductPage() {
         },
       };
 
-      const rzp = new (window as any).Razorpay(options);
+      const rzp = new (window).Razorpay(options);
       rzp.open();
     } catch (error) {
       console.error(error);

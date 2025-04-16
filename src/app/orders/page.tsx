@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react"
 import type { IOrder } from "@/models/Order"
 import { Download } from "lucide-react"
 import { IKImage } from "imagekitio-next"
-import { IMAGE_VARIANTS } from "@/models/Product"
+import { IMAGE_VARIANTS, IProduct } from "@/models/Product"
 import { apiClient } from "@/utils/api-client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -64,9 +64,11 @@ export default function OrdersPage() {
       <h1 className="text-3xl font-bold mb-8">My Orders</h1>
       <div className="space-y-6">
         {orders.map((order) => {
-          const variant = order.variant.type as any
+          const variant = order.variant.type as keyof typeof IMAGE_VARIANTS
+          if (!variant) return null // Skip if variant is not defined
           const variantDimensions = IMAGE_VARIANTS[variant as keyof typeof IMAGE_VARIANTS].dimensions
-          const product = order.productId as any
+          const product = order.productId as IProduct
+          if (!product) return null // Skip if product is not defined
 
           return (
             <Card key={order._id?.toString()}>
