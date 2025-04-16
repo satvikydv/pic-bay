@@ -17,7 +17,8 @@ import Razorpay from "razorpay";
 
 declare global {
   interface Window {
-    Razorpay: Razorpay; // Or the specific type if you have it
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Razorpay: any;
   }
 }
 
