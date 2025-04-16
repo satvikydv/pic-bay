@@ -13,10 +13,11 @@ import { Loader2, AlertCircle, Check, Image as ImageIcon } from "lucide-react";
 import { useNotification } from "@/components/Notification";
 import { useSession } from "next-auth/react";
 import { apiClient } from "@/utils/api-client";
+import Razorpay from "razorpay";
 
 declare global {
   interface Window {
-    Razorpay: any; // Or the specific type if you have it
+    Razorpay: Razorpay; // Or the specific type if you have it
   }
 }
 
